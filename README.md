@@ -25,6 +25,7 @@ What we have ?
 - Buy or not (Script Task)
 - End Event
 
-
+PROCESS ------>
+------------------------------------------------------------------------------------------------------------
 
 ![Screenshot from 2024-06-25 18-16-30](https://github.com/iushi6/Quarkus-process-decision-drl/assets/121929302/52d7145e-d96e-43e8-ba2a-771df04ccbe4)
