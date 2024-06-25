@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_C30FADB8-8C6D-4A39-96D1-352313B30191" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_56E7A892-89DE-4A25-BEE3-136A4509E7A6" name="fatherconsent" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_C30FADB8-8C6D-4A39-96D1-352313B30191">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_D67BB788-8103-4D33-8FAD-D8E97E2CEC2A" name="tMotherConsent" isCollection="true">
+    <dmn:itemComponent id="_CDBB607B-6BE2-4AA7-AC03-C4CCB39C38BA" name="Date" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_EB5FE69D-0552-4BCC-9528-3709843B9369" name="Consent" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_B0409CC9-1130-4EE7-9D55-318698CFF6CE" name="tFatherConsent" isCollection="false">
+    <dmn:itemComponent id="_EF7F1ADA-7216-4414-8A6C-6D49B2FCAE74" name="Consent" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_AE4992AF-2905-41E3-B2ED-7BAD7C037BDC" name="tItem" isCollection="true">
+    <dmn:itemComponent id="_078DABB5-5BA2-43F5-A8A0-E2AA33F791FB" name="Price" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_54542D33-7CDC-42AA-B583-884762B177FC" name="Category" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_C7177D45-3CCD-457B-866E-0FD82754000D" name="Name" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_A8F87493-17E4-4C96-873A-E9A7CEC39A92" name="MotherConsent">
+    <dmn:extensionElements/>
+    <dmn:variable id="_ABC12077-E32B-499B-83EF-A7E7DD85D3C9" name="MotherConsent" typeRef="tMotherConsent"/>
+  </dmn:inputData>
+  <dmn:decision id="_234E9915-A22B-454C-89F0-1687CC697492" name="FatherConsent.Consent">
+    <dmn:extensionElements/>
+    <dmn:variable id="_640AE836-5392-425D-8BA2-25540BF52140" name="FatherConsent.Consent" typeRef="tFatherConsent"/>
+    <dmn:informationRequirement id="_BC276D0B-0FDF-43B5-A71A-FBC53BD88983">
+      <dmn:requiredInput href="#_A8F87493-17E4-4C96-873A-E9A7CEC39A92"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_E915E6F3-87E2-4291-B26A-8C8F93CD7583" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_A4785481-7CDC-4075-94F4-DCB607EC9D7D">
+        <dmn:inputExpression id="_51CC7F4A-ADCE-467A-9CBB-57CC2DC3DE08" typeRef="string">
+          <dmn:text>MotherConsent.Consent</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_2038F355-C4F2-4203-AC84-873662BC3EC3"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_30C9AD31-06B8-40D2-8FF5-7A82C4B995C0">
+        <dmn:inputEntry id="_8C88D7F1-E991-46D4-9794-6AE1FA04C53C">
+          <dmn:text>"No"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_27C61B4F-23DE-4662-B327-849A569A0ADB">
+          <dmn:text>"No"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_9D478A72-2A6D-47D2-933F-E5C75AF09A8A">
+        <dmn:inputEntry id="_195FA32E-F793-42EC-AFB1-C50EACE9AACC">
+          <dmn:text>"Yes"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_F8C97D10-F0BE-443F-9A71-587F11E1FB52">
+          <dmn:text>"Yes"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_8D75DF52-2256-439D-98B2-AF542C5AE2B7" name="FinalDecision">
+    <dmn:extensionElements/>
+    <dmn:question>What will be the final decision?</dmn:question>
+    <dmn:allowedAnswers>"Yes", "No"</dmn:allowedAnswers>
+    <dmn:variable id="_29AB80B0-A383-4173-AF22-EF708E73DE04" name="FinalDecision" typeRef="string"/>
+    <dmn:informationRequirement id="_78B52B72-07A2-4A37-8974-8ECB9CC4F229">
+      <dmn:requiredDecision href="#_234E9915-A22B-454C-89F0-1687CC697492"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_7DF787F5-EE0B-4DAD-883F-EE9440842506">
+      <dmn:contextEntry>
+        <dmn:variable id="_51A4505B-DCF4-42BE-A890-CA8BBACF6017" name="final decision" typeRef="string"/>
+        <dmn:literalExpression id="_488CB77D-058D-4C34-AF83-2FA1C42226D3">
+          <dmn:text>FatherConsent.Consent</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_9A931089-59CE-4380-B18C-27C20DBDD7C3">
+          <dmn:text>if "Yes" then "Yes" else "No"</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_E414BE61-21FF-4AC0-BFBF-F33C950C5955" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_E915E6F3-87E2-4291-B26A-8C8F93CD7583">
+            <kie:width>50</kie:width>
+            <kie:width>191</kie:width>
+            <kie:width>206</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_7DF787F5-EE0B-4DAD-883F-EE9440842506">
+            <kie:width>50</kie:width>
+            <kie:width>313</kie:width>
+            <kie:width>370</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_488CB77D-058D-4C34-AF83-2FA1C42226D3">
+            <kie:width>370</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_9A931089-59CE-4380-B18C-27C20DBDD7C3">
+            <kie:width>370</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_A8F87493-17E4-4C96-873A-E9A7CEC39A92" dmnElementRef="_A8F87493-17E4-4C96-873A-E9A7CEC39A92" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="266" y="329" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_234E9915-A22B-454C-89F0-1687CC697492" dmnElementRef="_234E9915-A22B-454C-89F0-1687CC697492" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="266" y="199" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_8D75DF52-2256-439D-98B2-AF542C5AE2B7" dmnElementRef="_8D75DF52-2256-439D-98B2-AF542C5AE2B7" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="266" y="69" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_BC276D0B-0FDF-43B5-A71A-FBC53BD88983-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_BC276D0B-0FDF-43B5-A71A-FBC53BD88983">
+        <di:waypoint x="316" y="329"/>
+        <di:waypoint x="316" y="249"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_78B52B72-07A2-4A37-8974-8ECB9CC4F229-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_78B52B72-07A2-4A37-8974-8ECB9CC4F229">
+        <di:waypoint x="316" y="199"/>
+        <di:waypoint x="316" y="119"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
